@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f8f7" />
+  <title>LK 2 — Refleksi Pengalaman Belajar | Barirotul Munawaroh</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #253342;
+      --muted: #64748b;
+      --mint: #dff4ed;
+      --blue: #e6f0ff;
+      --cream: #fff9ee;
+      --line: #e4eaf0;
+      --accent: #347d70;
+      --accent-dark: #246356;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 8% 4%, rgba(210, 241, 230, .72), transparent 36%),
+        radial-gradient(ellipse at 92% 10%, rgba(220, 233, 255, .68), transparent 34%),
+        linear-gradient(135deg, #fbfcfb 0%, #fffaf2 52%, #f3f8fb 100%);
+      min-height: 100vh;
+    }
+    h1, h2, h3, h4, .display-font { font-family: "Plus Jakarta Sans", sans-serif; }
+    .glass {
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.92);
+      box-shadow: 0 14px 38px rgba(44, 62, 80, .065);
+      backdrop-filter: blur(12px);
+    }
+    .soft-card {
+      background: rgba(255,255,255,.9);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px rgba(37, 51, 66, .045);
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+    .soft-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(37, 51, 66, .09);
+      border-color: #cddfd9;
+    }
+    .nav-link {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 13px;
+      text-align: left;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      color: #536274;
+      transition: background .22s ease, color .22s ease, transform .22s ease, border-color .22s ease;
+    }
+    .nav-link:hover { background: #f1f8f5; color: var(--accent-dark); transform: translateX(2px); }
+    .nav-link.active {
+      color: #215f53;
+      background: linear-gradient(120deg, #e4f6ee, #eff7fb);
+      border-color: #cce7dd;
+      box-shadow: inset 3px 0 0 #4b9b87;
+    }
+    .nav-num {
+      display: grid; place-items: center; flex: 0 0 30px; height: 30px;
+      border-radius: 10px; background: #f1f5f9; color: #66758a; font-size: 12px; font-weight: 800;
+    }
+    .nav-link.active .nav-num { background: #cdeade; color: #205f52; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 7px; border-radius: 999px;
+      padding: 7px 11px; background: #f0f7f4; color: #347568;
+      font-size: 12px; font-weight: 700; letter-spacing: .01em;
+    }
+    .course-panel { animation: fadeUp .42s ease both; }
+    .fade-in { animation: fadeUp .72s ease both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .artifact-link {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 13px 14px; border: 1px solid #e3eaf0; border-radius: 14px;
+      background: #fff; color: #344456; text-decoration: none;
+      transition: background .22s ease, border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+    }
+    .artifact-link:hover { background: #f5fbf8; border-color: #b8ddce; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(42, 105, 87, .08); }
+    .artifact-link .arrow { color: #72968d; transition: transform .22s ease; }
+    .artifact-link:hover .arrow { transform: translate(2px, -2px); color: #286d5e; }
+    .fourc-card { min-height: 100%; }
+    .fourc-icon { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px; }
+    .connection .fourc-icon { background: #e3f4eb; color: #347b68; }
+    .challenge .fourc-icon { background: #fff0df; color: #a5682e; }
+    .concept .fourc-icon { background: #e8efff; color: #5270b0; }
+    .change .fourc-icon { background: #f2e9ff; color: #8059a7; }
+    .section-kicker { color: #63877f; text-transform: uppercase; letter-spacing: .14em; font-weight: 800; font-size: 10px; }
+    .progress-track { height: 5px; background: #e8eeef; border-radius: 99px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 16.66%; background: linear-gradient(90deg, #68ad96, #8eb9d9); border-radius: 99px; transition: width .3s ease; }
+    .mobile-select { display: none; }
+    @media (max-width: 1023px) {
+      .desktop-nav { display: none; }
+      .mobile-select { display: block; }
+      .layout-main { padding-left: 0 !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen">
+    <header class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-8">
+      <div class="glass rounded-3xl px-5 sm:px-8 py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 fade-in">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl grid place-items-center text-white text-xl shadow-lg" style="background:linear-gradient(135deg,#579987,#8db9d0)">
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+          <div>
+            <p class="section-kicker mb-1">E-Portfolio • Semester 1</p>
+            <h1 class="display-font text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-slate-800">Refleksi Pengalaman Belajar</h1>
+            <p class="text-sm sm:text-base text-slate-500 mt-1">LEMBAR KERJA 2 (LK 2) · Portofolio Digital</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <div class="rounded-2xl bg-white/80 border border-slate-100 px-4 py-3">
+            <p class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Mahasiswa PPG</p>
+            <p class="font-bold text-slate-700 mt-1">Barirotul Munawaroh</p>
+          </div>
+          <div class="rounded-2xl bg-white/80 border border-slate-100 px-4 py-3">
+            <p class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Bidang Studi</p>
+            <p class="font-bold text-slate-700 mt-1">Pendidikan Matematika</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-[290px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
+        <aside class="desktop-nav lg:sticky lg:top-6">
+          <div class="glass rounded-3xl p-4 sm:p-5">
+            <div class="flex items-center justify-between px-2 mb-3">
+              <h2 class="font-extrabold text-slate-700">Navigasi Mata Kuliah</h2>
+              <span class="text-xs font-bold text-slate-400">01 / 06</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed px-2 mb-4">Pilih mata kuliah untuk membuka refleksi, analisis artefak, dan rencana penerapan.</p>
+            <nav id="courseNav" class="space-y-1" aria-label="Navigasi mata kuliah"></nav>
+            <div class="mt-5 pt-4 border-t border-slate-100 px-2">
+              <div class="flex justify-between text-xs text-slate-500 mb-2"><span>Portofolio</span><span id="progressText">1 dari 6</span></div>
+              <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+            </div>
+          </div>
+          <div class="mt-4 rounded-3xl p-5 border border-emerald-100/80" style="background:linear-gradient(135deg,rgba(232,248,240,.9),rgba(239,246,255,.88))">
+            <div class="w-10 h-10 rounded-xl bg-white/80 grid place-items-center text-emerald-700 mb-3"><i class="fa-solid fa-seedling"></i></div>
+            <h3 class="font-extrabold text-slate-700 mb-2">Belajar, Bertumbuh, Berdampak</h3>
+            <p class="text-sm leading-relaxed text-slate-600">Refleksi bukan sekadar mengingat pengalaman, tetapi menemukan makna dan menentukan langkah nyata sebagai pendidik.</p>
+          </div>
+        </aside>
+
+        <main class="layout-main min-w-0">
+          <div class="mobile-select mb-4">
+            <label for="courseSelect" class="block text-sm font-bold text-slate-600 mb-2">Pilih Mata Kuliah</label>
+            <select id="courseSelect" class="w-full rounded-2xl bg-white border border-slate-200 px-4 py-3 text-slate-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-200"></select>
+          </div>
+          <div id="courseContent" aria-live="polite"></div>
+          <footer class="mt-8 px-2 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm text-slate-500">
+            <p><i class="fa-regular fa-heart text-rose-400 mr-1"></i> Dibangun dengan semangat guru yang reflektif dan berpihak pada murid.</p>
+            <p class="font-semibold">PPG Prajabatan · Pendidikan Matematika</p>
+          </footer>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==============================================================
+    // DATA REFLEKSI LK 2 — Silakan ubah narasi/artefak pada bagian ini.
+    // Semua artefak sementara mengarah ke BASE_DRIVE_FOLDER.
+    // Ganti url setiap artefak dengan URL file Google Drive spesifik
+    // jika tautan file individual sudah tersedia.
+    // ==============================================================
+    const BASE_DRIVE_FOLDER = "https://drive.google.com/drive/folders/1gAPCqL0uqi3xf1YXRZsdSCHmT5Nq-mlZ?usp=drive_link";
+
+    const courses = [
+      {
+        title: "Filosofi Pendidikan dan Pendidikan Nilai",
+        short: "Filosofi Pendidikan",
+        icon: "fa-landmark",
+        summary: "Memaknai pendidikan sebagai proses memanusiakan manusia, menumbuhkan karakter, dan mengintegrasikan nilai dalam pembelajaran Matematika yang berpihak pada murid.",
+        fourc: {
+          connection: "Keterkaitan materi dengan peran guru Matematika dalam mendidik karakter melalui model TGT di SMA Muhammadiyah 3 Jember, serta penyelesaian kasus seperti \"Ali Mogok Sekolah\" menggunakan konsep Tri Pusat Pendidikan.",
+          challenge: "Mengubah pandangan lama bahwa guru Matematika hanya fokus pada nilai akademik/rumus, serta tantangan dalam menghadirkan pengalaman belajar nilai secara sadar dan konsisten lewat disiplin positif.",
+          concept: "Konsep memanusiakan manusia (KHD), 3 tahapan internalisasi nilai (transformasi, transaksi, transinternalisasi), Growth Mindset (neuroplastisitas), kode etik guru, dan landasan Pancasila/AIK.",
+          change: "Komitmen merancang pembelajaran berdiferensiasi, disiplin positif melalui dialog, komunikasi dengan orang tua, serta refleksi rutin."
+        },
+        artifacts: [
+          ["Tugas Aktivitas 1.4 (Kasus Ali Mogok Sekolah)", "Membantu menghubungkan konsep Tri Pusat Pendidikan dengan analisis masalah peserta didik dan peran lingkungan dalam membentuk karakter."],
+          ["Tugas Aktivitas 1.5 (Modifikasi RPP Matematika)", "Menjadi bukti penerjemahan nilai pendidikan ke dalam rancangan pembelajaran Matematika."],
+          ["Tugas 2.C.a (Circle of Viewpoints - Sokola Rimba)", "Melatih kemampuan melihat persoalan pendidikan dari beragam sudut pandang."],
+          ["Tugas 2.C.b (Tug-of-War)", "Membantu menimbang dilema nilai dan memahami bahwa keputusan pendidikan memerlukan pertimbangan yang berimbang."],
+          ["Tugas 2.D (Sintesis Peta Konsep)", "Merangkum keterkaitan antarkonsep filosofi pendidikan dan pendidikan nilai."],
+          ["Tugas 2.E (Manifesto Pola Pikir Bertumbuh)", "Menegaskan komitmen terhadap proses belajar, ketekunan, dan keyakinan bahwa kemampuan dapat berkembang."],
+          ["Tugas 3.C (Diskusi The 4 C's)", "Merekam proses berpikir kritis dan kolaboratif dalam mendiskusikan nilai-nilai pendidikan."],
+          ["Tugas 3.D (Connect-Extend-Challenge)", "Menunjukkan hubungan pemahaman awal, wawasan baru, dan pertanyaan yang masih perlu dikaji."],
+          ["Tugas 3.E (Modul Ajar Berbasis Nilai)", "Memperlihatkan penerapan nilai secara terencana dalam aktivitas pembelajaran."],
+          ["Tugas 4.C (Analisis Kasus Pelanggaran Kode Etik Pak Eko)", "Menguatkan pemahaman tentang profesionalisme dan tanggung jawab etik seorang guru."],
+          ["Tugas 4.D (Kode Etik dalam 4C)", "Mengorganisasi pemahaman kode etik melalui refleksi Connection, Challenge, Concept, dan Change."],
+          ["Tugas 4.E (Rancangan Aksi Nyata)", "Menjadi rencana konkret untuk menerapkan nilai pendidikan dalam praktik mengajar."],
+          ["Modul Ajar/RPP Statistika (Integrasi AIK & TGT)", "Menunjukkan integrasi karakter, nilai AIK, dan kolaborasi dalam pembelajaran Statistika."],
+          ["LKPD Statistika Kontekstual", "Menghubungkan materi Matematika dengan konteks yang dekat dengan kehidupan siswa."],
+          ["Video Praktik Mengajar PPL Terbimbing", "Memberikan bukti praktik penerapan rancangan pembelajaran dan interaksi guru dengan siswa."],
+          ["Dokumentasi Diskusi Kelompok", "Merekam kolaborasi, pertukaran gagasan, dan proses membangun pemahaman bersama."]
+        ],
+        practical: "Konsep pendidikan yang memanusiakan manusia akan saya wujudkan melalui pembelajaran berdiferensiasi dan kegiatan kelompok yang memberi ruang bagi setiap siswa untuk berpartisipasi. Saya akan menerapkan disiplin positif melalui dialog, bukan sekadar hukuman, menjalin komunikasi dengan orang tua ketika diperlukan, serta melakukan refleksi rutin agar keputusan pembelajaran semakin adil, sadar nilai, dan konsisten."
+      },
+      {
+        title: "Pemahaman Peserta Didik dan Pembelajarannya",
+        short: "Pemahaman Peserta Didik",
+        icon: "fa-people-group",
+        summary: "Memahami peserta didik sebagai individu yang unik, dengan karakteristik, potensi, kebutuhan, dan latar lingkungan yang beragam sehingga pembelajaran perlu dirancang secara responsif.",
+        fourc: {
+          connection: "Kesadaran bahwa peserta didik unik dan perilakunya dipengaruhi lingkungan, terinspirasi dari Topik 2.A eksplorasi masalah karakteristik siswa.",
+          challenge: "Mengubah kebiasaan mengukur siswa hanya dari nilai kognitif menjadi menghargai 8 Kecerdasan Majemuk Howard Gardner.",
+          concept: "Keunikan karakteristik siswa (fisik, intelektual, sosial-emosional), Teori Kecerdasan Majemuk, dan Pembelajaran Berdiferensiasi.",
+          change: "Melakukan asesmen diagnostik awal, menghargai potensi non-akademik, dan memahami alasan di balik perilaku siswa sebelum bertindak."
+        },
+        artifacts: [
+          ["Hasil Pengerjaan Studi Kasus Topik 2.A", "Menjadi bukti proses mengeksplorasi masalah karakteristik siswa dan memahami faktor yang memengaruhi perilakunya."],
+          ["Hasil Diskusi Refleksi di LMS", "Merekam pertukaran pandangan dan pengembangan pemahaman melalui refleksi bersama."],
+          ["Catatan Analisis Kasus Karakteristik Peserta Didik", "Membantu mengidentifikasi kebutuhan dan potensi siswa sebagai dasar penentuan strategi pembelajaran."]
+        ],
+        practical: "Saya akan memulai pembelajaran dengan asesmen diagnostik untuk mengenali kesiapan, minat, dan kebutuhan siswa. Saya juga akan memberi ruang bagi potensi non-akademik, menggunakan variasi aktivitas dan representasi materi, serta berusaha memahami alasan di balik perilaku siswa sebelum menentukan respons atau mengambil keputusan."
+      },
+      {
+        title: "Pembelajaran Mendalam dan Asesmen Dasar",
+        short: "Pembelajaran Mendalam",
+        icon: "fa-brain",
+        summary: "Mendesain pengalaman belajar Matematika yang mindful, meaningful, dan joyful melalui masalah kontekstual serta asesmen formatif yang membantu siswa dan guru memahami perkembangan belajar.",
+        fourc: {
+          connection: "Penerapan prinsip Deep Learning (Mindful, Meaningful, Joyful) berbasis Problem Based Learning pada materi matematika demi keterlibatan utuh siswa.",
+          challenge: "Mengubah kebiasaan menggunakan asesmen hanya di akhir (Sumatif) menjadi asesmen formatif yang berkelanjutan sepanjang proses.",
+          concept: "Prinsip Deep Learning, Problem Based Learning untuk literasi matematis, intervensi Growth Mindset, dan Asesmen Formatif berkelanjutan.",
+          change: "Konsisten menerapkan Joyful Learning di matematika, rutin menggunakan asesmen formatif untuk memantau proses, dan menyisipkan intervensi pola pikir bertumbuh."
+        },
+        artifacts: [
+          ["RPP Matematika (Prinsip Deep Learning & Growth Mindset)", "Memperlihatkan desain pengalaman belajar yang sadar tujuan, bermakna, menyenangkan, dan mendukung keberanian mencoba."],
+          ["Instrumen Asesmen Formatif Materi Kuartil", "Menjadi alat untuk memantau pemahaman siswa selama proses belajar dan menentukan tindak lanjut."],
+          ["Hasil Belajar dan Asesmen Perkembangan Siswa", "Membantu melihat perkembangan siswa dari waktu ke waktu, bukan hanya berdasarkan satu nilai akhir."]
+        ],
+        practical: "Dalam pembelajaran berikutnya, saya akan menyampaikan tujuan belajar dengan jelas, mengaitkan materi dengan masalah nyata, dan membangun suasana belajar yang menyenangkan. Saya akan menggunakan pertanyaan pemantik, pemeriksaan pemahaman singkat, umpan balik, dan asesmen formatif secara berkala untuk menyesuaikan bantuan serta memberi kesempatan siswa memperbaiki pemahamannya."
+      },
+      {
+        title: "Praktik Pengalaman Lapangan (PPL) Terbimbing",
+        short: "PPL Terbimbing",
+        icon: "fa-chalkboard-user",
+        summary: "Pengalaman langsung menjalani proses menjadi guru melalui orientasi, observasi, asistensi, praktik mengajar, dan refleksi berkelanjutan bersama Guru Pamong serta DPL.",
+        fourc: {
+          connection: "Pengalaman nyata dari orientasi, observasi, asistensi mengajar, hingga praktik mandiri matematika profesional.",
+          challenge: "Mengelola waktu diskusi, mengondisikan kelas heterogen, mengatasi miskonsepsi materi statistika, dan mengaktifkan seluruh siswa dalam kelompok.",
+          concept: "Observasi lingkungan belajar, model pembelajaran aktif, siklus praktik terbimbing (Siklus 1, 2, 3), serta refleksi berbasis umpan balik Guru Pamong & DPL.",
+          change: "Konsisten menerapkan scaffolding, menguatkan integrasi teknologi, dan membiasakan refleksi kolaboratif pasca-mengajar."
+        },
+        artifacts: [
+          ["LK 2 Lembar Kerja Observasi Lingkungan Belajar", "Menjadi dasar memahami konteks sekolah, kondisi kelas, dan lingkungan yang memengaruhi pembelajaran."],
+          ["Perangkat Pembelajaran Lengkap (Modul, LKPD, Media, Asesmen)", "Menunjukkan kesiapan perencanaan yang saling terhubung antara tujuan, kegiatan, media, dan penilaian."],
+          ["LK 3 Refleksi Praktik Asistensi", "Merekam pembelajaran dari kegiatan asistensi dan membantu mengidentifikasi aspek yang perlu ditingkatkan."],
+          ["Jurnal Refleksi Pembelajaran Terbimbing (Siklus 1, 2, dan 3)", "Menunjukkan proses perbaikan praktik mengajar secara bertahap berdasarkan pengalaman dan umpan balik."],
+          ["Dokumentasi Kegiatan PPL", "Memberikan gambaran kegiatan nyata selama proses orientasi, observasi, asistensi, dan praktik mengajar."]
+        ],
+        practical: "Saya akan menggunakan scaffolding secara bertahap agar siswa dengan kesiapan berbeda tetap dapat terlibat, memperjelas alokasi waktu diskusi, dan memeriksa pemahaman sebelum beralih ke konsep berikutnya. Saya juga akan mengintegrasikan teknologi secara tepat guna dan melakukan refleksi kolaboratif setelah mengajar dengan memanfaatkan umpan balik Guru Pamong serta DPL."
+      },
+      {
+        title: "Pola Pikir Bertumbuh (Growth Mindset)",
+        short: "Growth Mindset",
+        icon: "fa-seedling",
+        summary: "Memandang tantangan sebagai kesempatan belajar dan meyakini bahwa kemampuan matematika dapat berkembang melalui strategi, latihan, dukungan, serta umpan balik yang tepat.",
+        fourc: {
+          connection: "Memahami bahwa kesulitan siswa dalam belajar matematika bukanlah ketidakmampuan, melainkan proses yang butuh strategi baru.",
+          challenge: "Bergeser dari hasil akhir (nilai) ke apresiasi proses, serta menerapkan opportunity-based thinking saat kelas tidak berjalan ideal.",
+          concept: "Fixed vs Growth Mindset, konsep neuroplastisitas otak, Constraint-Based vs Opportunity-Based Thinking, cognitive framing, dan scaffolding.",
+          change: "Memberikan umpan balik berbasis proses, memberi kesempatan siswa memperbaiki kesalahan matematika, serta menerapkan growth mindset pada evaluasi diri guru."
+        },
+        artifacts: [
+          ["LK 1.2 Membaca Pola Pikir", "Membantu mengenali perbedaan respons fixed mindset dan growth mindset terhadap kesulitan."],
+          ["LK 2.3 Cara Otak Melihat Tantangan (Constraint vs Opportunity)", "Mendukung latihan membingkai kendala sebagai peluang untuk mencari strategi alternatif."],
+          ["LK 4.2 Mengubah Responmu untuk Kelas Bertumbuh", "Menjadi bahan refleksi untuk memilih respons guru yang mendorong keberanian mencoba dan ketekunan."],
+          ["Tugas Luaran Modul Pembelajaran dengan Prinsip Mindset-Toolset-Skillset", "Menunjukkan penerapan pola pikir bertumbuh melalui cara berpikir, perangkat, dan keterampilan yang mendukung pembelajaran."]
+        ],
+        practical: "Saya akan memberikan umpan balik yang menyoroti strategi, usaha, dan proses berpikir siswa, bukan hanya jawaban benar atau salah. Siswa akan diberi kesempatan meninjau dan memperbaiki kesalahan matematika. Ketika pembelajaran tidak berjalan sesuai rencana, saya akan mengevaluasi faktor yang dapat diubah, mencari strategi alternatif, dan menerapkan growth mindset pada evaluasi diri sebagai guru."
+      },
+      {
+        title: "Guru Sahabat Berbasis AIK",
+        short: "Guru Sahabat Berbasis AIK",
+        icon: "fa-hand-holding-heart",
+        summary: "Membangun relasi guru-siswa yang hangat dan manusiawi serta menjadikan nilai Al-Islam dan Kemuhammadiyahan sebagai napas keteladanan dan budaya belajar.",
+        fourc: {
+          connection: "Membangun hubungan hangat (sahabat) dan mengintegrasikan nilai Islam Kemuhammadiyahan (AIK) sebagai bagian ibadah menuntut ilmu di SMA Muhammadiyah 3 Jember.",
+          challenge: "Mengikis anggapan AIK hanya tugas guru Agama, serta tantangan menampilkan keteladanan nyata (uswah hasanah) dibanding sekadar nasihat verbal.",
+          concept: "Peran guru sebagai murabbi, mu'allim, dan uswah hasanah; integrasi nilai jujur (olah data statistika), amanah, tanggung jawab; serta budaya berkemajuan Muhammadiyah.",
+          change: "Konsisten mengawali kelas dengan doa/motivasi spiritual, membangun iklim kelas penuh empati, dan menjadi teladan karakter mulia."
+        },
+        artifacts: [
+          ["Modul Ajar Statistika Terintegrasi Nilai AIK", "Menunjukkan bahwa nilai AIK dapat diintegrasikan secara kontekstual dalam pembelajaran Matematika."],
+          ["LKPD Karakter Kolaboratif", "Mendorong siswa mempraktikkan kerja sama, amanah, tanggung jawab, dan saling menghargai."],
+          ["Bahan Ajar Digital Berbasis AIK", "Menjadi sumber belajar yang menghubungkan konsep akademik dengan nilai dan karakter."],
+          ["Video Praktik Mengajar Karakter Islami", "Memberikan gambaran penerapan keteladanan dan pembiasaan karakter dalam interaksi pembelajaran."],
+          ["Jurnal Refleksi & Catatan Umpan Balik Guru Pamong", "Merekam evaluasi diri dan masukan untuk memperkuat peran guru sebagai sahabat sekaligus teladan."]
+        ],
+        practical: "Saya akan membangun kedekatan yang sehat melalui sapaan, perhatian, dan komunikasi yang empatik. Pembelajaran dapat diawali dengan doa dan motivasi spiritual, kemudian nilai jujur, amanah, dan tanggung jawab dihidupkan dalam kegiatan nyata—misalnya kejujuran saat mengolah data statistika dan tanggung jawab dalam kerja kelompok. Saya ingin menjadi teladan melalui tindakan, bukan hanya nasihat."
+      }
+    ];
+
+    const fourCMeta = {
+      connection: { label: "Connection", subtitle: "Keterhubungan", icon: "fa-link", cls: "connection", number: "01" },
+      challenge: { label: "Challenge", subtitle: "Tantangan", icon: "fa-mountain-sun", cls: "challenge", number: "02" },
+      concept: { label: "Concept", subtitle: "Konsep Penting", icon: "fa-lightbulb", cls: "concept", number: "03" },
+      change: { label: "Change", subtitle: "Perubahan Diri", icon: "fa-arrow-trend-up", cls: "change", number: "04" }
+    };
+
+    const nav = document.getElementById("courseNav");
+    const content = document.getElementById("courseContent");
+    const select = document.getElementById("courseSelect");
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+    let activeCourse = 0;
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[char]));
+    }
+
+    function renderNav() {
+      nav.innerHTML = courses.map((course, index) => `
+        <button type="button" class="nav-link ${index === activeCourse ? "active" : ""}" data-course="${index}" aria-current="${index === activeCourse ? "page" : "false"}">
+          <span class="nav-num">${String(index + 1).padStart(2, "0")}</span>
+          <span class="min-w-0">
+            <span class="block text-sm font-bold leading-snug">${escapeHTML(course.short)}</span>
+            <span class="block text-xs text-slate-400 mt-1">${course.artifacts.length} artefak pembelajaran</span>
+          </span>
+        </button>
+      `).join("");
+      select.innerHTML = courses.map((course, index) => `<option value="${index}" ${index === activeCourse ? "selected" : ""}>${index + 1}. ${escapeHTML(course.title)}</option>`).join("");
+      progressText.textContent = `${activeCourse + 1} dari ${courses.length}`;
+      progressBar.style.width = `${((activeCourse + 1) / courses.length) * 100}%`;
+    }
+
+    function renderFourC(key, text) {
+      const meta = fourCMeta[key];
+      return `
+        <article class="soft-card fourc-card ${meta.cls} rounded-2xl p-5">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <div class="fourc-icon"><i class="fa-solid ${meta.icon} text-lg"></i></div>
+            <span class="text-xs font-extrabold tracking-widest text-slate-300">${meta.number}</span>
+          </div>
+          <p class="text-[11px] uppercase tracking-[.13em] font-extrabold text-slate-400 mb-1">${meta.subtitle}</p>
+          <h3 class="text-lg font-extrabold text-slate-800 mb-3">${meta.label}</h3>
+          <p class="text-sm leading-7 text-slate-600">${escapeHTML(text)}</p>
+        </article>
+      `;
+    }
+
+    function renderArtifacts(artifacts) {
+      return artifacts.map(([title, reason], index) => `
+        <article class="rounded-2xl border border-slate-100 bg-white/75 p-3 sm:p-4">
+          <a class="artifact-link" href="${BASE_DRIVE_FOLDER}" target="_blank" rel="noopener noreferrer" aria-label="Buka folder Google Drive untuk ${escapeHTML(title)}">
+            <span class="flex items-start gap-3 min-w-0">
+              <span class="w-9 h-9 shrink-0 rounded-xl bg-emerald-50 text-emerald-700 grid place-items-center"><i class="fa-regular fa-file-lines"></i></span>
+              <span class="min-w-0">
+                <span class="block text-sm font-extrabold leading-snug">${escapeHTML(title)}</span>
+                <span class="block text-xs text-emerald-700 font-bold mt-2"><i class="fa-regular fa-eye mr-1"></i> Lihat artefak di Google Drive</span>
+              </span>
+            </span>
+            <i class="fa-solid fa-arrow-up-right-from-square arrow text-sm shrink-0"></i>
+          </a>
+          <p class="text-sm leading-6 text-slate-600 mt-3 px-1"><span class="font-bold text-slate-700">Alasan pemilihan:</span> ${escapeHTML(reason)}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderCourse(index) {
+      activeCourse = index;
+      const course = courses[index];
+      renderNav();
+      content.innerHTML = `
+        <section class="course-panel" key="${index}">
+          <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 lg:p-9 border border-white/90 shadow-sm" style="background:linear-gradient(125deg,rgba(255,255,255,.96),rgba(235,248,242,.93) 57%,rgba(235,242,255,.92))">
+            <div class="absolute -right-10 -top-12 w-48 h-48 rounded-full bg-white/40 blur-2xl pointer-events-none"></div>
+            <div class="relative">
+              <div class="flex flex-wrap items-center gap-2 mb-5">
+                <span class="pill"><i class="fa-solid fa-bookmark"></i> Mata Kuliah ${String(index + 1).padStart(2, "0")}</span>
+                <span class="pill" style="background:#f5f2ff;color:#7961a1"><i class="fa-solid fa-layer-group"></i> Refleksi 4C</span>
+              </div>
+              <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-5">
+                <div class="max-w-3xl">
+                  <h2 class="display-font text-2xl sm:text-3xl lg:text-[2.15rem] leading-tight font-extrabold tracking-tight text-slate-800">${escapeHTML(course.title)}</h2>
+                  <p class="text-slate-600 leading-7 mt-4 max-w-3xl">${escapeHTML(course.summary)}</p>
+                </div>
+                <div class="w-16 h-16 shrink-0 rounded-2xl bg-white/90 border border-white grid place-items-center text-2xl text-emerald-700 shadow-sm"><i class="fa-solid ${course.icon}"></i></div>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-7">
+                <div class="rounded-2xl bg-white/75 border border-white px-4 py-3"><p class="text-xs text-slate-400 font-bold">Kerangka Refleksi</p><p class="font-extrabold mt-1 text-slate-700">4C Framework</p></div>
+                <div class="rounded-2xl bg-white/75 border border-white px-4 py-3"><p class="text-xs text-slate-400 font-bold">Artefak Terpilih</p><p class="font-extrabold mt-1 text-slate-700">${course.artifacts.length} dokumen/karya</p></div>
+                <div class="hidden sm:block rounded-2xl bg-white/75 border border-white px-4 py-3"><p class="text-xs text-slate-400 font-bold">Fokus</p><p class="font-extrabold mt-1 text-slate-700">Refleksi & Aksi Nyata</p></div>
+              </div>
+            </div>
+          </div>
+
+          <section class="mt-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-4 px-1">
+              <div><p class="section-kicker mb-2">Bagian 01</p><h2 class="text-xl sm:text-2xl font-extrabold text-slate-800">Refleksi Pengalaman Belajar 4C</h2></div>
+              <p class="text-sm text-slate-500">Dari pengalaman menuju perubahan praktik</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+              ${Object.entries(course.fourc).map(([key, value]) => renderFourC(key, value)).join("")}
+            </div>
+          </section>
+
+          <section class="mt-9">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 mb-4 px-1">
+              <div><p class="section-kicker mb-2">Bagian 02</p><h2 class="text-xl sm:text-2xl font-extrabold text-slate-800">Analisis Artefak Pembelajaran</h2></div>
+              <span class="text-sm text-slate-500">${course.artifacts.length} artefak dipilih</span>
+            </div>
+            <div class="rounded-3xl border border-slate-100 bg-white/65 p-3 sm:p-4">
+              <div class="grid grid-cols-1 xl:grid-cols-2 gap-3">
+                ${renderArtifacts(course.artifacts)}
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-9">
+            <div class="mb-4 px-1"><p class="section-kicker mb-2">Bagian 03</p><h2 class="text-xl sm:text-2xl font-extrabold text-slate-800">Kaitan Praktis dan Rencana Perubahan</h2></div>
+            <div class="soft-card rounded-3xl p-6 sm:p-8">
+              <div class="flex items-start gap-4">
+                <div class="w-11 h-11 shrink-0 rounded-2xl grid place-items-center bg-violet-50 text-violet-700"><i class="fa-solid fa-route text-lg"></i></div>
+                <div>
+                  <h3 class="font-extrabold text-slate-800 text-lg mb-3">Bagaimana konsep ini diterapkan dalam praktik mengajar?</h3>
+                  <p class="text-slate-600 leading-8">${escapeHTML(course.practical)}</p>
+                </div>
+              </div>
+              <div class="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <p class="text-sm text-slate-500"><i class="fa-solid fa-check-double text-emerald-600 mr-2"></i>Komitmen: menerapkan refleksi menjadi tindakan nyata.</p>
+                <div class="flex gap-2">
+                  <button type="button" class="prev-btn rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50 transition" ${index === 0 ? "disabled" : ""}><i class="fa-solid fa-arrow-left mr-2"></i>Sebelumnya</button>
+                  <button type="button" class="next-btn rounded-xl px-4 py-2.5 text-sm font-bold text-white transition hover:shadow-md" style="background:#347d70">${index === courses.length - 1 ? "Kembali ke Awal" : "Mata Kuliah Berikutnya"} <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      `;
+      content.querySelectorAll("[data-course]").forEach(button => button.addEventListener("click", () => renderCourse(Number(button.dataset.course))));
+      const prev = content.querySelector(".prev-btn");
+      const next = content.querySelector(".next-btn");
+      if (prev) prev.addEventListener("click", () => { if (activeCourse > 0) renderCourse(activeCourse - 1); });
+      if (next) next.addEventListener("click", () => renderCourse(activeCourse === courses.length - 1 ? 0 : activeCourse + 1));
+      select.value = String(index);
+      // Return to the top of the content area when changing courses.
+      content.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    nav.addEventListener("click", event => {
+      const button = event.target.closest("[data-course]");
+      if (button) renderCourse(Number(button.dataset.course));
+    });
+    select.addEventListener("change", event => renderCourse(Number(event.target.value)));
+
+    renderNav();
+    renderCourse(0);
+  </script>
+</body>
+</html>
